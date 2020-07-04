@@ -16,9 +16,19 @@ module Bluedart
 
     def response
       wsa = 'http://tempuri.org/IPickupRegistration/RegisterPickup'
-      params = { 'request' => @pickup_registration_request }
-      opts = { message: 'RegisterPickup', wsa: wsa, params: params, extra: { 'profile' => @profile }, url: request_url }
-      make_request(opts)
+      params = {'request' => @pickup_registration_request}
+      opts = {message: 'RegisterPickup', wsa: wsa, params: params, extra: {'profile' => @profile}, url: request_url}
+      Rails.logger.debug("================================ request bluedart")
+      Rails.logger.debug("#{opts}")
+      Rails.logger.debug("================================ request bluedart")
+      begin
+        make_request(opts)
+      rescue => err
+        Rails.logger.debug("================================ request bluedart exception")
+        Rails.logger.debug err
+        Rails.logger.debug err.backtrace.join("\n")
+        Rails.logger.debug("================================ request bluedart exception")
+      end
     end
 
     private

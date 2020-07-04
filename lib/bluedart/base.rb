@@ -127,7 +127,7 @@ module Bluedart
           value.each do |single_value|
             xml = hash_xml(xml, single_value)
           end
-        end  
+        end
       else
         xml.send(key, value)
       end
@@ -180,6 +180,9 @@ module Bluedart
     # Returns Hash
     def make_request(opts)
       body = request_xml(opts)
+      Rails.logger.debug('======== request')
+      Rails.logger.debug(body.to_xml)
+      Rails.logger.debug('======== request')
       response = request(opts[:url], body.to_xml)
       response_return(response, opts[:message])
     end
