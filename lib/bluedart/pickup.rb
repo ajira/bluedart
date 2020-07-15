@@ -28,6 +28,7 @@ module Bluedart
         Rails.logger.debug err
         Rails.logger.debug err.backtrace.join("\n")
         Rails.logger.debug("================================ request bluedart exception")
+        return { "error": true, "message": "Error with bluedart, Please contact support" }
       end
     end
 
